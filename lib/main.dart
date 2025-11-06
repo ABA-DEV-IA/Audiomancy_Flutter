@@ -1,4 +1,4 @@
-import 'package:audiomancy_flutter/ui/screens/player/playlist.dart';
+import 'package:audiomancy_flutter/ui/screens/tapbar/tapbar.dart';
 import 'package:flutter/material.dart';
 import 'core/themes/app_theme.dart';
 
@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.lightTheme, // Thème clair
       darkTheme: AppTheme.darkTheme, // Thème sombre
       themeMode: ThemeMode.system, // Utilise le thème du système (Android/iOS)
-      home: PlaylistScreen(jsonFile: "let_off_steam")
+      home: TapBarScreen(),
     );
   }
 }

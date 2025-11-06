@@ -18,6 +18,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
   assets:
-    - assets/
+    - assets/categories/
+    - assets/images/avatar/
+    - assets/images/icon/
+    - assets/images/
     - assets/json/
+    - assets/
+
