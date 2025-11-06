@@ -15,15 +15,26 @@ class RightModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Récupère les couleurs du thème actuel
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+
     return Drawer(
       width: 320,
+      backgroundColor: colorScheme.background, // couleur du fond du Drawer
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const DrawerHeader(
+          DrawerHeader(
+            decoration: BoxDecoration(
+              color: colorScheme.primary.withOpacity(0.9),
+            ),
             child: Text(
               '🎧 Playlist',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: theme.textTheme.headlineSmall?.copyWith(
+                color: colorScheme.onPrimary,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           Expanded(
@@ -35,19 +46,40 @@ class RightModal extends StatelessWidget {
 
                 return Container(
                   color: isCurrent
-                      ? Colors.deepPurple.withOpacity(0.1)
+                      ? theme.colorScheme.secondary.withOpacity(0.15)
                       : Colors.transparent,
                   child: ListTile(
-                    leading: Image.network(
-                      track.image,
-                      width: 50,
-                      height: 50,
-                      fit: BoxFit.cover,
+                    leading: ClipRRect(
+                      borderRadius: BorderRadius.circular(8),
+                      child: Image.network(
+                        track.image,
+                        width: 50,
+                        height: 50,
+                        fit: BoxFit.cover,
+                      ),
                     ),
-                    title: Text(track.title),
-                    subtitle: Text(track.artist),
+                    title: Text(
+                      track.title,
+                      style: TextStyle(
+                        color: isCurrent
+                            ? theme.colorScheme.secondary
+                            : theme.colorScheme.onBackground,
+                        fontWeight:
+                            isCurrent ? FontWeight.bold : FontWeight.normal,
+                      ),
+                    ),
+                    subtitle: Text(
+                      track.artist,
+                      style: TextStyle(
+                        color: theme.colorScheme.onBackground.withOpacity(0.7),
+                      ),
+                    ),
                     trailing: isCurrent
-                        ? const Icon(Icons.play_arrow, color: Colors.green)
+                        ? Icon(
+                            Icons.play_arrow_rounded,
+                            color: theme.colorScheme.secondary, // Vert du thème
+                            size: 28,
+                          )
                         : null,
                     onTap: () {
                       Navigator.of(context).maybePop(); // Ferme la modale

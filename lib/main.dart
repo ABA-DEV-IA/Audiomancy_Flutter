@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.lightTheme, // Thème clair
       darkTheme: AppTheme.darkTheme, // Thème sombre
       themeMode: ThemeMode.system, // Utilise le thème du système (Android/iOS)
-      home: PlaylistScreen()
+      home: PlaylistScreen(jsonFile: "let_off_steam")
     );
   }
 }

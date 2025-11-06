@@ -4,9 +4,13 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:audiomancy_flutter/data/models/track.dart';
 import 'package:audiomancy_flutter/ui/screens/player/widgets/music_card.dart';
 import 'package:audiomancy_flutter/ui/screens/player/modal/right_modal.dart';
+import 'package:audiomancy_flutter/core/services/track_service.dart';
 
 class PlaylistScreen extends StatefulWidget {
-  const PlaylistScreen({super.key});
+  final String? jsonFile;
+  final String? jsonContent;
+
+  const PlaylistScreen({super.key, this.jsonFile, this.jsonContent});
 
   @override
   State<PlaylistScreen> createState() => _PlaylistScreenState();
@@ -19,19 +23,22 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   @override
   void initState() {
     super.initState();
-    loadTracks();
+    _loadTracks();
   }
 
-  Future<void> loadTracks() async {
-    final jsonString =
-        await rootBundle.loadString('assets/json/city_walk_cache.json');
-    final List<dynamic> jsonList = jsonDecode(jsonString);
-    final tracks = jsonList.map((e) => Track.fromJson(e)).toList();
-
-    setState(() {
-      loadedTracks = tracks;
-      currentIndex = 0;
-    });
+  Future<void> _loadTracks() async {
+    try {
+      final tracks = await TrackService.loadTracks(
+        fileName: widget.jsonFile,
+        jsonContent: widget.jsonContent,
+      );
+      setState(() {
+        loadedTracks = tracks;
+        currentIndex = 0;
+      });
+    } catch (e) {
+      debugPrint('Erreur de chargement des pistes: $e');
+    }
   }
 
   void _nextTrack() {
