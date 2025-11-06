@@ -1,5 +1,6 @@
 import 'package:audiomancy_flutter/ui/screens/generation/generation_screen.dart';
 import 'package:audiomancy_flutter/ui/screens/home/home.dart';
+import 'package:audiomancy_flutter/ui/screens/search/search.dart';
 import 'package:flutter/material.dart';
 
 class TapBarScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class _TapBarScreenState extends State<TapBarScreen> {
   final List<Widget> _screens = const [
     HomeScreen(),
     GenerationScreen(),
+    SearchScreen(),
   ];
 
   void _onItemTapped(int index) {
@@ -34,6 +36,7 @@ class _TapBarScreenState extends State<TapBarScreen> {
             icon: Icon(Icons.auto_awesome_rounded),
             label: 'Generation',
           ),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         ],
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,

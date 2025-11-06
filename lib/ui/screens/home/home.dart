@@ -27,8 +27,13 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const SizedBox(height: 20),
                 const Text(
-                  '----- Mood -----',
-                  style: TextStyle(fontSize: 24),
+                  'Catégories du jour',
+                  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+                ),
+                const SizedBox(height: 20),
+                const Text(
+                  'Mood',
+                  style: TextStyle(fontSize: 24, fontStyle: FontStyle.italic),
                 ),
                 FutureBuilder<List<CategoryItem>>(
                   future: CategoryService.loadCategories('mood'),
@@ -61,8 +66,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 const SizedBox(height: 20),
                 const Text(
-                  '----- Activités -----',
-                  style: TextStyle(fontSize: 24),
+                  'Activités',
+                  style: TextStyle(fontSize: 24, fontStyle: FontStyle.italic),
                 ),
 
                 FutureBuilder<List<CategoryItem>>(
