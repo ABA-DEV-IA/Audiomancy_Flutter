@@ -46,22 +46,20 @@ class _PromptStepState extends State<PromptStep> {
           children: [
             Text(
               '1. Décrivez votre playlist idéale',
-              style: theme.textTheme.headlineMedium?.copyWith(
-                color: AppColors.eclatEther,
-              ),
+              style: theme.textTheme.headlineMedium,
             ),
             const SizedBox(height: 20),
             TextField(
               controller: widget.controller,
-              style: const TextStyle(color: AppColors.luneVoilee),
-              decoration: const InputDecoration(
+              style: theme.textTheme.bodyLarge,
+              decoration: InputDecoration(
                 hintText: 'Ex: Rock énergique pour le sport...',
-                hintStyle: TextStyle(color: AppColors.luneVoilee),
+                hintStyle: theme.textTheme.bodyLarge?.copyWith(color: theme.textTheme.bodyLarge?.color?.withOpacity(0.6)),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.amethyseMagique),
+                  borderSide: BorderSide(color: theme.colorScheme.secondary),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: AppColors.vertDragon),
+                  borderSide: BorderSide(color: theme.colorScheme.primary),
                 ),
               ),
               maxLines: 3,
@@ -72,8 +70,8 @@ class _PromptStepState extends State<PromptStep> {
               child: FilledButton.icon(
                 onPressed: widget.onNext,
                 style: FilledButton.styleFrom(
-                  backgroundColor: AppColors.vertDragon,
-                  foregroundColor: AppColors.brumeCosmique,
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
                 ),
                 icon: const Icon(Icons.arrow_forward),
                 label: const Text('Suivant'),
