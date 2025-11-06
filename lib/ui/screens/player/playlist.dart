@@ -69,6 +69,9 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     final currentTrack = loadedTracks[currentIndex];
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('🔮 Audiomancy'),
+      ),
       endDrawer: RightModal(
         tracks: loadedTracks,
         currentTrack: currentTrack,
@@ -78,20 +81,6 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Bouton playlist à droite
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Builder(
-                  builder: (context) => ElevatedButton(
-                    onPressed: () {
-                      Scaffold.of(context).openEndDrawer();
-                    },
-                    child: const Text('🎵 Playlist'),
-                  ),
-                ),
-              ],
-            ),
             const SizedBox(height: 8),
             // Carte musique avec boutons précédent / suivant
             MusicCard(

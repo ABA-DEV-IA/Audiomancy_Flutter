@@ -1,4 +1,5 @@
 import 'package:audiomancy_flutter/ui/screens/home/widgets/categorybloc.dart';
+import 'package:audiomancy_flutter/ui/screens/player/playlist.dart';
 import 'package:flutter/material.dart';
 
 import 'package:audiomancy_flutter/core/services/daily_categories.service.dart';
@@ -48,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeScreen(), // A MODIFIER POUR LIEN PLAYLIST
+                                  builder: (context) => PlaylistScreen(jsonFile: category.id), // A MODIFIER POUR LIEN PLAYLIST
                                 ),
                               );
                             },
@@ -83,7 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeScreen(), // A MODIFIER POUR LIEN PLAYLIST
+                                  builder: (context) => PlaylistScreen(jsonFile: category.id), // A MODIFIER POUR LIEN PLAYLIST
                                 ),
                               );
                             },

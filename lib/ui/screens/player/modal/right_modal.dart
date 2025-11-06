@@ -29,11 +29,19 @@ class RightModal extends StatelessWidget {
             decoration: BoxDecoration(
               color: colorScheme.primary.withOpacity(0.9),
             ),
-            child: Text(
-              '🎧 Playlist',
-              style: theme.textTheme.headlineSmall?.copyWith(
-                color: colorScheme.onPrimary,
-                fontWeight: FontWeight.bold,
+            margin: EdgeInsets
+                .zero, // supprime les marges par défaut du DrawerHeader
+            padding: EdgeInsets.all(16),
+            child: SizedBox.expand(
+              child: Align(
+                alignment: Alignment.centerLeft, // ou Alignment.center
+                child: Text(
+                  '🎧 Playlist',
+                  style: Theme.of(context).textTheme.headlineSmall?.copyWith(
+                    color: Theme.of(context).colorScheme.onPrimary,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ),
           ),
@@ -64,8 +72,9 @@ class RightModal extends StatelessWidget {
                         color: isCurrent
                             ? theme.colorScheme.secondary
                             : theme.colorScheme.onBackground,
-                        fontWeight:
-                            isCurrent ? FontWeight.bold : FontWeight.normal,
+                        fontWeight: isCurrent
+                            ? FontWeight.bold
+                            : FontWeight.normal,
                       ),
                     ),
                     subtitle: Text(
