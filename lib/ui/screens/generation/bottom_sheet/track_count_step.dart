@@ -11,6 +11,8 @@ class TrackCountStep extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
@@ -35,10 +37,11 @@ class TrackCountStep extends StatelessWidget {
             const SizedBox(height: 20),
             Align(
               alignment: Alignment.centerLeft,
-              child: TextButton.icon(
+              child: FilledButton.icon(
                 onPressed: onBack,
-                style: TextButton.styleFrom(
-                  foregroundColor: AppColors.givreAstral,
+                style: FilledButton.styleFrom(
+                  backgroundColor: AppColors.vertDragon,
+                  foregroundColor: AppColors.brumeCosmique,
                 ),
                 icon: const Icon(Icons.arrow_back),
                 label: const Text('Retour'),

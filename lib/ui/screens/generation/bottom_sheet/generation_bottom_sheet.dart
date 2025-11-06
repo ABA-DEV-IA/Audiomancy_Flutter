@@ -21,6 +21,7 @@ class _GenerationBottomSheetState extends State<GenerationBottomSheet> {
   }
 
   void _goToNextPage() {
+    FocusScope.of(context).unfocus(); // Dismiss the keyboard
     if (_promptController.text.isNotEmpty) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 300),

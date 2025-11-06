@@ -13,15 +13,29 @@ class GenerationFlowPage extends StatefulWidget {
 class _GenerationFlowPageState extends State<GenerationFlowPage> {
   final PageController _pageController = PageController();
   final TextEditingController _promptController = TextEditingController();
+  final ValueNotifier<bool> _ready = ValueNotifier(false);
+
+  @override
+  void initState() {
+    super.initState();
+
+    // 🧠 Attendre que la transition soit terminée avant d'afficher le contenu
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Future.delayed(const Duration(milliseconds: 250)); // Attendre fin de l'animation
+      if (mounted) _ready.value = true;
+    });
+  }
 
   @override
   void dispose() {
     _pageController.dispose();
     _promptController.dispose();
+    _ready.dispose();
     super.dispose();
   }
 
   void _goToNextPage() {
+    FocusScope.of(context).unfocus(); // Ferme le clavier
     if (_promptController.text.isNotEmpty) {
       _pageController.nextPage(
         duration: const Duration(milliseconds: 400),
@@ -38,7 +52,6 @@ class _GenerationFlowPageState extends State<GenerationFlowPage> {
   }
 
   void _onTrackCountSelected(int count) {
-    // On retourne le résultat à la page précédente
     Navigator.of(context).pop({
       'prompt': _promptController.text,
       'trackCount': count,
@@ -54,19 +67,28 @@ class _GenerationFlowPageState extends State<GenerationFlowPage> {
         backgroundColor: AppColors.brumeCosmique,
         elevation: 0,
       ),
-      body: PageView(
-        controller: _pageController,
-        physics: const NeverScrollableScrollPhysics(),
-        children: [
-          PromptStep(
-            controller: _promptController,
-            onNext: _goToNextPage,
-          ),
-          TrackCountStep(
-            onTrackCountSelected: _onTrackCountSelected,
-            onBack: _goToPreviousPage,
-          ),
-        ],
+      body: ValueListenableBuilder<bool>(
+        valueListenable: _ready,
+        builder: (context, ready, _) {
+          if (!ready) {
+            // Pendant l'animation → évite le bug de layout
+            return const Center(child: CircularProgressIndicator());
+          }
+          return PageView(
+            controller: _pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            children: [
+              PromptStep(
+                controller: _promptController,
+                onNext: _goToNextPage,
+              ),
+              TrackCountStep(
+                onTrackCountSelected: _onTrackCountSelected,
+                onBack: _goToPreviousPage,
+              ),
+            ],
+          );
+        },
       ),
     );
   }
