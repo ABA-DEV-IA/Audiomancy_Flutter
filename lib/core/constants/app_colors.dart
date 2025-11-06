@@ -40,7 +40,7 @@ class AppColors {
   static const Color lightText = Color(0xFF1E1E1E);
   static const Color darkText = Color(0xFFF5F5F5);
 
-  // === COULEURS AUDIOMANCY ===
+  // === COULEURS PRINCIPAL ===
   static const Color encreAstrale = Color(0xFF6A0DAD);
   static const Color brumeCosmique = Color(0xFF301934);
   static const Color eclatEther = Color(0xFFD9B3FF);
@@ -51,4 +51,11 @@ class AppColors {
   static const Color ombreOcculte = Color(0xFF2B2B2B);
   static const Color feuAnciens = Color(0xFFFF934F);
   static const Color givreAstral = Color(0xFFA3D5FF);
+
+  // === COULEUR PLAYLIST ===
+  static const Color playlistBackgroundLight = lightBackground;
+  static const Color playlistBackgroundDark = ombreOcculte;
+
+  static const Color playlistSelectedLight = encreAstrale;
+  static const Color playlistSelectedDark = amethyseMagique;
 }

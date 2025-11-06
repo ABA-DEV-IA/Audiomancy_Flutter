@@ -1,3 +1,4 @@
+import 'package:audiomancy_flutter/core/themes/playlist_theme.dart';
 import 'package:flutter/material.dart';
 import '../constants/app_colors.dart';
 
@@ -34,6 +35,9 @@ class AppTheme {
       backgroundColor: AppColors.vertDragon,
       foregroundColor: Colors.white,
     ),
+    extensions: const [
+      PlaylistColors.light,
+    ],
   );
 
   // === Thème sombre ===
@@ -68,5 +72,8 @@ class AppTheme {
       backgroundColor: AppColors.vertDragon,
       foregroundColor: AppColors.brumeCosmique,
     ),
+    extensions: const [
+      PlaylistColors.dark,
+    ],
   );
 }
