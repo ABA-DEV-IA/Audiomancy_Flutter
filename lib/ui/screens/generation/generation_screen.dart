@@ -1,3 +1,4 @@
+import 'package:audiomancy_flutter/ui/screens/player/playlist.dart';
 import 'package:audiomancy_flutter/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:audiomancy_flutter/ui/routes/init.dart';
@@ -19,18 +20,25 @@ class GenerationScreen extends StatelessWidget {
     if (result != null) {
       final String prompt = result['prompt'];
       final int trackCount = result['trackCount'];
-      print('Génération demandée avec le prompt : "$prompt" et $trackCount musiques.');
+      print(
+        'Génération demandée avec le prompt : "$prompt" et $trackCount musiques.',
+      );
+
+      // Pour l'instant, on redirige vers la playlist "defouloir"
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const PlaylistScreen(jsonFile: "let_off_steam"),
+        ),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.brumeCosmique, // Fond sombre pour le thème
       appBar: AppBar(
-        title: const Text('Génération de Playlist'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
+        title: const Text('🔮 Audiomancy'),
       ),
       body: GenerationContent(
         onStart: () => _startGenerationProcess(context),

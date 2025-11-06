@@ -21,7 +21,9 @@ class _GenerationFlowPageState extends State<GenerationFlowPage> {
 
     // 🧠 Attendre que la transition soit terminée avant d'afficher le contenu
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await Future.delayed(const Duration(milliseconds: 250)); // Attendre fin de l'animation
+      await Future.delayed(
+        const Duration(milliseconds: 250),
+      ); // Attendre fin de l'animation
       if (mounted) _ready.value = true;
     });
   }
@@ -61,10 +63,8 @@ class _GenerationFlowPageState extends State<GenerationFlowPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.ombreOcculte,
       appBar: AppBar(
-        title: const Text('Nouvelle Incantation'),
-        backgroundColor: AppColors.brumeCosmique,
+        title: const Text('🔮 Audiomancy'),
         elevation: 0,
       ),
       body: ValueListenableBuilder<bool>(

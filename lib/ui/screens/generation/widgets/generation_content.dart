@@ -18,7 +18,6 @@ class GenerationContent extends StatelessWidget {
             'Créez la playlist de vos rêves',
             style: theme.textTheme.headlineLarge?.copyWith(
               fontWeight: FontWeight.bold,
-              color: AppColors.eclatEther, // Couleur personnalisée
             ),
             textAlign: TextAlign.center,
           ),
@@ -27,8 +26,8 @@ class GenerationContent extends StatelessWidget {
             style: ElevatedButton.styleFrom(
               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
               textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              backgroundColor: AppColors.amethyseMagique, // Couleur personnalisée
-              foregroundColor: AppColors.luneVoilee, // Couleur personnalisée
+              backgroundColor: theme.colorScheme.secondary,
+              foregroundColor: theme.colorScheme.onSecondary,
             ),
             onPressed: onStart, // Utilise le callback
             icon: const Icon(Icons.auto_awesome), // Une icône pour la magie

@@ -8,9 +8,10 @@ class GenerationFlowScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.ombreOcculte, // Fond opaque pour corriger l'animation
+      backgroundColor:
+          AppColors.ombreOcculte, // Fond opaque pour corriger l'animation
       appBar: AppBar(
-        title: const Text('Nouvelle Incantation'),
+        title: const Text('🔮 Audiomancy'),
         backgroundColor: AppColors.brumeCosmique, // Thème sombre
         elevation: 0,
       ),
