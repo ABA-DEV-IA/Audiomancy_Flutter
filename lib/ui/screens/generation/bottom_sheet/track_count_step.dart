@@ -18,7 +18,7 @@ class TrackCountStep extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('2. Combien de musiques ?', style: theme.textTheme.headlineMedium?.copyWith(color: AppColors.eclatEther)),
+            Text('2. Combien de musiques ?', style: theme.textTheme.headlineMedium),
             const SizedBox(height: 20),
             ...[10, 25, 50].map((count) {
               return Padding(
@@ -26,8 +26,8 @@ class TrackCountStep extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     minimumSize: const Size(double.infinity, 50),
-                    backgroundColor: AppColors.amethyseMagique,
-                    foregroundColor: AppColors.luneVoilee,
+                    backgroundColor: theme.colorScheme.secondary,
+                    foregroundColor: theme.colorScheme.onSecondary,
                   ),
                   onPressed: () => onTrackCountSelected(count),
                   child: Text('$count musiques'),
@@ -40,8 +40,8 @@ class TrackCountStep extends StatelessWidget {
               child: FilledButton.icon(
                 onPressed: onBack,
                 style: FilledButton.styleFrom(
-                  backgroundColor: AppColors.vertDragon,
-                  foregroundColor: AppColors.brumeCosmique,
+                  backgroundColor: theme.colorScheme.primary,
+                  foregroundColor: theme.colorScheme.onPrimary,
                 ),
                 icon: const Icon(Icons.arrow_back),
                 label: const Text('Retour'),

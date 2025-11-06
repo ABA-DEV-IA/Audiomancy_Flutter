@@ -1,3 +1,4 @@
+import 'package:audiomancy_flutter/ui/screens/generation/generation_screen.dart';
 import 'package:audiomancy_flutter/ui/screens/home/home.dart';
 import 'package:flutter/material.dart';
 
@@ -13,7 +14,7 @@ class _TapBarScreenState extends State<TapBarScreen> {
 
   final List<Widget> _screens = const [
     HomeScreen(),
-    Placeholder(),
+    GenerationScreen(),
   ];
 
   void _onItemTapped(int index) {
