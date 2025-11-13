@@ -21,7 +21,7 @@ class RightModal extends StatelessWidget {
 
     return Drawer(
       width: 320,
-      backgroundColor: colorScheme.background, // couleur du fond du Drawer
+      backgroundColor: colorScheme.surface, // couleur du fond du Drawer
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -60,7 +60,7 @@ class RightModal extends StatelessWidget {
                     leading: ClipRRect(
                       borderRadius: BorderRadius.circular(8),
                       child: Image.network(
-                        track.image,
+                        track.image ?? 'https://via.placeholder.com/50',
                         width: 50,
                         height: 50,
                         fit: BoxFit.cover,
@@ -71,7 +71,7 @@ class RightModal extends StatelessWidget {
                       style: TextStyle(
                         color: isCurrent
                             ? theme.colorScheme.secondary
-                            : theme.colorScheme.onBackground,
+                            : theme.colorScheme.onSurface,
                         fontWeight: isCurrent
                             ? FontWeight.bold
                             : FontWeight.normal,
@@ -80,7 +80,7 @@ class RightModal extends StatelessWidget {
                     subtitle: Text(
                       track.artist,
                       style: TextStyle(
-                        color: theme.colorScheme.onBackground.withOpacity(0.7),
+                        color: theme.colorScheme.onSurface.withOpacity(0.7),
                       ),
                     ),
                     trailing: isCurrent

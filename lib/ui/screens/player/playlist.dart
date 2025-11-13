@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:audiomancy_flutter/data/models/playlist.dart';
 import 'package:audiomancy_flutter/data/models/track.dart';
 import 'package:audiomancy_flutter/ui/screens/player/widgets/music_card.dart';
 import 'package:audiomancy_flutter/ui/screens/player/modal/right_modal.dart';
 
 class PlaylistScreen extends StatefulWidget {
-  final Playlist playlist;
+  final List<Track> playlist;
 
   const PlaylistScreen({super.key, required this.playlist});
 
@@ -14,13 +13,13 @@ class PlaylistScreen extends StatefulWidget {
 }
 
 class _PlaylistScreenState extends State<PlaylistScreen> {
-  List<TrackInPlaylist> loadedTracks = [];
+  List<Track> loadedTracks = [];
   int currentIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    loadedTracks = widget.playlist.tracks;
+    loadedTracks = widget.playlist;
     currentIndex = 0;
   }
 
@@ -36,7 +35,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
     }
   }
 
-  void _selectTrack(TrackInPlaylist track) {
+  void _selectTrack(Track track) {
     final index = loadedTracks.indexWhere((t) => t.id == track.id);
     if (index != -1) {
       setState(() => currentIndex = index);
@@ -46,40 +45,24 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
   @override
   Widget build(BuildContext context) {
     if (loadedTracks.isEmpty) {
-      return const Center(child: Text('No tracks in this playlist.'));
+      return Scaffold(
+        appBar: AppBar(
+          title: Text('Playlist'),
+        ),
+        body: Center(child: Text('No tracks in this playlist.'))
+      );
     }
 
     final currentTrack = loadedTracks[currentIndex];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.playlist.name),
+        title: Text("Generated Playlist"),
       ),
       endDrawer: RightModal(
-        tracks: loadedTracks.map((t) => Track(
-          id: t.id,
-          name: t.name,
-          artistName: t.artistName,
-          audio: t.audioUrl,
-          image: t.imageUrl,
-          duration: t.durationSeconds,
-        )).toList(),
-        currentTrack: Track(
-          id: currentTrack.id,
-          name: currentTrack.name,
-          artistName: currentTrack.artistName,
-          audio: currentTrack.audioUrl,
-          image: currentTrack.imageUrl,
-          duration: currentTrack.durationSeconds,
-        ),
-        onTrackSelected: (track) => _selectTrack(TrackInPlaylist(
-          id: track.id,
-          name: track.name,
-          artistName: track.artistName,
-          audioUrl: track.audio,
-          imageUrl: track.image,
-          durationSeconds: track.duration,
-        )),
+        tracks: loadedTracks,
+        currentTrack: currentTrack,
+        onTrackSelected: _selectTrack,
       ),
       body: Center(
         child: Column(
@@ -87,14 +70,7 @@ class _PlaylistScreenState extends State<PlaylistScreen> {
           children: [
             const SizedBox(height: 8),
             MusicCard(
-              track: Track(
-                id: currentTrack.id,
-                name: currentTrack.name,
-                artistName: currentTrack.artistName,
-                audio: currentTrack.audioUrl,
-                image: currentTrack.imageUrl,
-                duration: currentTrack.durationSeconds,
-              ),
+              track: currentTrack,
               onNext: _nextTrack,
               onPrevious: _previousTrack,
             ),

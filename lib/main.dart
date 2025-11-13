@@ -1,4 +1,4 @@
-import 'package:audiomancy_flutter/ui/screens/tapbar/tapbar.dart';
+import 'package:audiomancy_flutter/ui/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'core/themes/app_theme.dart';
 
@@ -6,7 +6,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   await dotenv.load(fileName: ".env");
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
 class MainApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
       theme: AppTheme.lightTheme, // Thème clair
       darkTheme: AppTheme.darkTheme, // Thème sombre
       themeMode: ThemeMode.system, // Utilise le thème du système (Android/iOS)
-      home: TapBarScreen(),
+      home: const HomeScreen(),
     );
   }
 }

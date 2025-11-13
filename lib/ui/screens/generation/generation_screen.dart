@@ -1,11 +1,10 @@
 import 'package:audiomancy_flutter/ui/screens/player/playlist.dart';
-import 'package:audiomancy_flutter/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:audiomancy_flutter/ui/routes/init.dart';
 import './generation_flow_page.dart';
 import './widgets/init.dart';
 import 'package:audiomancy_flutter/core/services/api_service.dart';
-import 'package:audiomancy_flutter/data/models/playlist.dart';
+import 'package:audiomancy_flutter/data/models/track.dart';
 
 class GenerationScreen extends StatelessWidget {
   const GenerationScreen({super.key});
@@ -19,15 +18,11 @@ class GenerationScreen extends StatelessWidget {
     );
 
     if (result != null) {
-      final String mood = result['mood']; // Assuming 'mood' is now returned
-      final String genre = result['genre']; // Assuming 'genre' is now returned
-      final String tempo = result['tempo']; // Assuming 'tempo' is now returned
-      final String instrumentation = result['instrumentation']; // Assuming 'instrumentation' is now returned
-      final int durationMinutes = result['durationMinutes']; // Assuming 'durationMinutes' is now returned
-      final int numTracks = result['numTracks']; // Assuming 'numTracks' is now returned
+      final String prompt = result['prompt'];
+      final int trackCount = result['trackCount'];
 
       print(
-        'Génération demandée avec mood: "$mood", genre: "$genre", tempo: "$tempo", instrumentation: "$instrumentation", duration: $durationMinutes min, tracks: $numTracks.',
+        'Génération demandée avec prompt: "$prompt", tracks: $trackCount.',
       );
 
       // Show a loading indicator
@@ -37,15 +32,7 @@ class GenerationScreen extends StatelessWidget {
 
       try {
         final apiService = ApiService();
-        final request = PlaylistGenerationRequest(
-          mood: mood,
-          genre: genre,
-          tempo: tempo,
-          instrumentation: instrumentation,
-          durationMinutes: durationMinutes,
-          numTracks: numTracks,
-        );
-        final Playlist generatedPlaylist = await apiService.generatePlaylist(request);
+        final List<Track> generatedPlaylist = await apiService.generatePlaylist(prompt, trackCount);
 
         if (!context.mounted) return;
         ScaffoldMessenger.of(context).hideCurrentSnackBar(); // Hide loading

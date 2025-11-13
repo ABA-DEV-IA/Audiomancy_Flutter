@@ -29,7 +29,7 @@ class CategoryBlocWidget extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.max,
           children: [
-            Container(
+            SizedBox(
               width: 50,
               height: 50,
               child: Image.asset(

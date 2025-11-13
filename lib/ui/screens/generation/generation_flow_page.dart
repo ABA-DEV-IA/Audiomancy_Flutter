@@ -1,4 +1,3 @@
-import 'package:audiomancy_flutter/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'bottom_sheet/prompt_step.dart';
 import 'bottom_sheet/track_count_step.dart';

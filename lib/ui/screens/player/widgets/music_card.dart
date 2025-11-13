@@ -26,12 +26,12 @@ class MusicCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            MusicThumbnail(imageUrl: track.image),
+            MusicThumbnail(imageUrl: track.image ?? 'https://via.placeholder.com/100'),
             const SizedBox(height: 12),
             MusicInfo(
               title: track.title,
               author: track.artist,
-              license: track.licenseName,
+              license: track.licenseName ?? 'No license',
             ),
             const SizedBox(height: 12),
             MusicPlayer(

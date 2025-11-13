@@ -1,9 +1,10 @@
+
 import 'package:json_annotation/json_annotation.dart';
 
-part 'track.g.dart';
+part 'generated_track.g.dart';
 
 @JsonSerializable()
-class Track {
+class GeneratedTrack {
   final String id;
   final String title;
   final String artist;
@@ -17,7 +18,7 @@ class Track {
   final List<String> tags;
   final String? image;
 
-  Track({
+  GeneratedTrack({
     required this.id,
     required this.title,
     required this.artist,
@@ -29,8 +30,8 @@ class Track {
     this.image,
   });
 
-  factory Track.fromJson(Map<String, dynamic> json) =>
-      _$TrackFromJson(json);
+  factory GeneratedTrack.fromJson(Map<String, dynamic> json) =>
+      _$GeneratedTrackFromJson(json);
 
-  Map<String, dynamic> toJson() => _$TrackToJson(this);
+  Map<String, dynamic> toJson() => _$GeneratedTrackToJson(this);
 }
